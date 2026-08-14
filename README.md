@@ -20,14 +20,29 @@
 2. 좌측 메뉴 **Build > Firestore Database**에서 데이터베이스를 생성합니다 (프로덕션 모드 선택 후, 아래 3단계에서 규칙을 붙여넣으면 됩니다).
 3. **Firestore Database > 규칙** 탭에서 이 저장소의 `firestore.rules` 내용을 그대로 붙여넣고 게시합니다.
 4. 프로젝트 개요 옆 톱니바퀴 > **프로젝트 설정 > 일반** 탭에서 "내 앱"을 웹(`</>`) 앱으로 추가합니다. (Firebase Hosting 설정은 건너뛰어도 됩니다.)
-5. 앱 등록 후 나오는 `firebaseConfig` 객체 값을 복사해서 `js/firebase-config.js`의 각 `REPLACE_WITH_...` 값을 실제 값으로 교체합니다.
+5. 앱 등록 후 나오는 `firebaseConfig` 객체 값을 아래 2단계의 GitHub Secrets에 등록합니다.
 
-Firebase 웹 config 값(apiKey 등)은 비밀 값이 아니라 클라이언트에 그대로 노출되는 값입니다. 실제 보안은 `firestore.rules`의 접근 규칙으로 제어됩니다.
+Firebase 웹 config 값(apiKey 등)은 비밀 값이 아니라 클라이언트에 그대로 노출되는 값입니다. 실제 보안은 `firestore.rules`의 접근 규칙으로 제어됩니다. Secrets로 관리하는 이유는 값을 커밋 히스토리에 평문으로 남기지 않기 위함입니다.
 
-## 2. GitHub Pages 배포
+## 2. GitHub Secrets 등록
+
+저장소 **Settings > Secrets and variables > Actions > New repository secret**에서 아래 6개를 등록합니다. 배포 워크플로우가 빌드 시점에 이 값들로 `js/firebase-config.js`를 생성합니다.
+
+| Secret 이름 | Firebase config 필드 |
+| --- | --- |
+| `FIREBASE_API_KEY` | `apiKey` |
+| `FIREBASE_AUTH_DOMAIN` | `authDomain` |
+| `FIREBASE_PROJECT_ID` | `projectId` |
+| `FIREBASE_STORAGE_BUCKET` | `storageBucket` |
+| `FIREBASE_MESSAGING_SENDER_ID` | `messagingSenderId` |
+| `FIREBASE_APP_ID` | `appId` |
+
+로컬 저장소의 `js/firebase-config.js`는 로컬 테스트용 플레이스홀더이며, 실제 배포에는 사용되지 않고 배포 시 위 Secrets 값으로 덮어써집니다.
+
+## 3. GitHub Pages 배포
 
 1. GitHub 저장소 **Settings > Pages**에서 Source를 **GitHub Actions**로 설정합니다.
-2. `main` 브랜치에 병합되면 `.github/workflows/deploy-pages.yml` 워크플로우가 자동으로 정적 파일을 배포합니다.
+2. `main` 브랜치에 push되면 `.github/workflows/deploy-pages.yml` 워크플로우가 Secrets로 `firebase-config.js`를 생성한 뒤 정적 파일을 자동 배포합니다.
 3. 배포된 주소는 Settings > Pages 화면 또는 Actions 실행 로그에서 확인할 수 있습니다.
 
 ## 로컬에서 확인하기
