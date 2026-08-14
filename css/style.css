@@ -1,0 +1,114 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+
+.screen {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+  color: #ffffff;
+  text-align: center;
+  padding: 24px;
+}
+
+.content {
+  max-width: 480px;
+}
+
+.content h1 {
+  margin-bottom: 8px;
+}
+
+.state-idle {
+  background-color: #37474f;
+}
+
+.state-waiting {
+  background-color: #1565c0;
+}
+
+.state-ready {
+  background-color: #c62828;
+}
+
+.state-result {
+  background-color: #2e7d32;
+}
+
+.state-fail {
+  background-color: #6d4c41;
+}
+
+.ms-result {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 8px 0 24px;
+}
+
+.nickname-form {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.nickname-form input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #212121;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.leaderboard {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 16px 24px;
+  margin-top: 16px;
+  text-align: left;
+}
+
+.leaderboard h2 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.leaderboard ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.leaderboard li.best {
+  font-weight: 700;
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
