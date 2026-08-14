@@ -30,12 +30,12 @@ Firebase 웹 config 값(apiKey 등)은 비밀 값이 아니라 클라이언트�
 
 | Secret 이름 | Firebase config 필드 |
 | --- | --- |
-| `FIREBASE_API_KEY` | `apiKey` |
-| `FIREBASE_AUTH_DOMAIN` | `authDomain` |
-| `FIREBASE_PROJECT_ID` | `projectId` |
-| `FIREBASE_STORAGE_BUCKET` | `storageBucket` |
-| `FIREBASE_MESSAGING_SENDER_ID` | `messagingSenderId` |
-| `FIREBASE_APP_ID` | `appId` |
+| `VITE_FIREBASE_API_KEY` | `apiKey` |
+| `VITE_FIREBASE_AUTH_DOMAIN` | `authDomain` |
+| `VITE_FIREBASE_PROJECT_ID` | `projectId` |
+| `VITE_FIREBASE_STORAGE_BUCKET` | `storageBucket` |
+| `VITE_FIREBASE_MESSAGING_SENDER_ID` | `messagingSenderId` |
+| `VITE_FIREBASE_APP_ID` | `appId` |
 
 로컬 저장소의 `js/firebase-config.js`는 로컬 테스트용 플레이스홀더이며, 실제 배포에는 사용되지 않고 배포 시 위 Secrets 값으로 덮어써집니다.
 
